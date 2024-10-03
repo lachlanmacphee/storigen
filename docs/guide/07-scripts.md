@@ -10,8 +10,6 @@ Remix SaaS comes with a few scripts that can help you manage your application. W
 - `lint`: Lints the application (ESLint).
 - `typecheck`: Typechecks the application.
 - `format`: Formats the application (Prettier).
-- `test`: Runs the tests.
-- `test:coverage`: Generates a coverage report.
 
 ## How to run a script?
 
