@@ -16,6 +16,3 @@ node_modules
 # Prisma
 /prisma/data.db
 /prisma/data.db-journal
-
-# Tests
-/coverage

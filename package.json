@@ -1,9 +1,9 @@
 {
   "name": "storigen",
   "private": true,
-  "description": "A Lightweight, Feature-Rich, and Production-Ready Remix Stack for your next SaaS application.",
+  "description": "Generate stories for family and friends using generative AI.",
   "repository": "dev-xo/remix-saas",
-  "author": "Daniel Kanem <devxo@mail.com> (https://twitter.com/DanielKanem)",
+  "author": "Lachlan MacPhee <contact@lachlanmacphee.com> (https://github.com/lachlanmacphee)",
   "sideEffects": false,
   "type": "module",
   "imports": {
@@ -15,8 +15,6 @@
     "format": "prettier --write .",
     "lint": "eslint .",
     "start": "cross-env NODE_ENV=production node ./server.mjs",
-    "test": "vitest",
-    "test:coverage": "vitest run --coverage",
     "typecheck": "tsc",
     "validate": "npm run lint && npm run typecheck"
   },
@@ -29,7 +27,7 @@
     "@radix-ui/react-select": "^2.0.0",
     "@radix-ui/react-slot": "^1.0.2",
     "@radix-ui/react-switch": "^1.0.3",
-    "@react-email/components": "^0.0.22",
+    "@react-email/components": "^0.0.25",
     "@react-email/render": "^0.0.17",
     "@remix-run/express": "^2.9.1",
     "@remix-run/node": "^2.9.2",
@@ -51,7 +49,7 @@
     "prisma": "^5.13.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-email": "^2.1.4",
+    "react-email": "^3.0.1",
     "react-i18next": "^14.1.1",
     "remix-auth": "^3.6.0",
     "remix-auth-github": "^1.7.0",
@@ -75,7 +73,6 @@
     "@types/morgan": "^1.9.9",
     "@types/react": "^18.3.2",
     "@types/react-dom": "^18.3.0",
-    "@vitest/coverage-v8": "^1.6.0",
     "autoprefixer": "^10.4.19",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
@@ -87,8 +84,7 @@
     "tailwindcss": "^3.4.3",
     "typescript": "^5.4.5",
     "vite": "^5.2.11",
-    "vite-tsconfig-paths": "^4.3.2",
-    "vitest": "^1.6.0"
+    "vite-tsconfig-paths": "^4.3.2"
   },
   "engines": {
     "node": ">=18.0.0"
