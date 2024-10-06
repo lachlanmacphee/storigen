@@ -5,14 +5,14 @@ import { authenticator } from '#app/modules/auth/auth.server'
 import { getDomainPathname } from '#app/utils/misc.server'
 import { ROUTE_PATH as HOME_PATH } from '#app/routes/_home+/_layout'
 import { ROUTE_PATH as LOGIN_PATH } from '#app/routes/auth+/login'
-import { ROUTE_PATH as DASHBOARD_PATH } from '#app/routes/dashboard+/_layout'
+import { ROUTE_PATH as PROFILES_PATH } from '#app/routes/profiles+/_layout'
 import { Logo } from '#app/components/logo'
 
 export const ROUTE_PATH = '/auth' as const
 
 export async function loader({ request }: LoaderFunctionArgs) {
   await authenticator.isAuthenticated(request, {
-    successRedirect: DASHBOARD_PATH,
+    successRedirect: PROFILES_PATH,
   })
   const pathname = getDomainPathname(request)
   if (pathname === ROUTE_PATH) return redirect(LOGIN_PATH)

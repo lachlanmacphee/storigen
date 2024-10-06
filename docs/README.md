@@ -92,8 +92,8 @@ In order to send emails, Remix SaaS uses [Resend](https://resend.com/), a simple
 
 In order to use Stripe Subscriptions and seed our database, we'll require to get the secret keys from our Stripe Dashboard.
 
-1. Create a [Stripe Account](https://dashboard.stripe.com/login) or use an existing one.
-2. Visit [API Keys](https://dashboard.stripe.com/test/apikeys) section and copy the `Publishable` and `Secret` keys.
+1. Create a [Stripe Account](https://profiles.stripe.com/login) or use an existing one.
+2. Visit [API Keys](https://profiles.stripe.com/test/apikeys) section and copy the `Publishable` and `Secret` keys.
 3. Paste each one of them into your `.env` file as `STRIPE_PUBLIC_KEY` and `STRIPE_SECRET_KEY` respectively.
 
 ## Stripe Webhook
@@ -120,7 +120,7 @@ npx prisma migrate dev --name init
 ```
 
 > [!NOTE]
-> Resetting migrations will require us to clean our Stripe Data. You can do that by visiting your [Stripe Test Dashboard](https://dashboard.stripe.com/test/developers), scrolling down and clicking on `Delete all test data` button.
+> Resetting migrations will require us to clean our Stripe Data. You can do that by visiting your [Stripe Test Dashboard](https://profiles.stripe.com/test/developers), scrolling down and clicking on `Delete all test data` button.
 
 # Development Server
 

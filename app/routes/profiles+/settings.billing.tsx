@@ -20,7 +20,7 @@ import { ROUTE_PATH as LOGIN_PATH } from '#app/routes/auth+/login'
 import { Switch } from '#app/components/ui/switch'
 import { Button } from '#app/components/ui/button'
 
-export const ROUTE_PATH = '/dashboard/settings/billing' as const
+export const ROUTE_PATH = '/profiles/settings/billing' as const
 
 export const meta: MetaFunction = () => {
   return [{ title: 'Remix SaaS - Billing' }]
@@ -70,7 +70,7 @@ export async function action({ request }: ActionFunctionArgs) {
   return json({})
 }
 
-export default function DashboardBilling() {
+export default function ProfilesBilling() {
   const { subscription, currency } = useLoaderData<typeof loader>()
 
   const [selectedPlanId, setSelectedPlanId] = useState<Plan>(

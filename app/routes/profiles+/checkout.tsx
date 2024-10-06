@@ -8,10 +8,10 @@ import { PLANS } from '#app/modules/stripe/plans'
 import { prisma } from '#app/utils/db.server'
 import { useInterval } from '#app/utils/hooks/use-interval'
 import { siteConfig } from '#app/utils/constants/brand'
-import { ROUTE_PATH as DASHBOARD_PATH } from '#app/routes/dashboard+/_layout'
+import { ROUTE_PATH as PROFILES_PATH } from '#app/routes/profiles+/_layout'
 import { buttonVariants } from '#app/components/ui/button'
 
-export const ROUTE_PATH = '/dashboard/checkout'
+export const ROUTE_PATH = '/profiles/checkout'
 
 export const meta: MetaFunction = () => {
   return [{ title: `${siteConfig.siteTitle} - Checkout` }]
@@ -22,12 +22,12 @@ export async function loader({ request }: LoaderFunctionArgs) {
   const subscription = await prisma.subscription.findUnique({
     where: { userId: sessionUser.id },
   })
-  if (!subscription) return redirect(DASHBOARD_PATH)
+  if (!subscription) return redirect(PROFILES_PATH)
 
   return json({ isFreePlan: subscription.planId === PLANS.FREE } as const)
 }
 
-export default function DashboardCheckout() {
+export default function ProfilesCheckout() {
   const { isFreePlan } = useLoaderData<typeof loader>()
   const { revalidate } = useRevalidator()
 
@@ -58,7 +58,7 @@ export default function DashboardCheckout() {
           <div className="flex w-full px-6">
             <div className="w-full border-b border-border" />
           </div>
-          <div className="relative mx-auto flex w-full  flex-col items-center p-6">
+          <div className="relative mx-auto flex w-full flex-col items-center p-6">
             <div className="relative flex w-full flex-col items-center justify-center gap-6 overflow-hidden rounded-lg border border-border bg-secondary px-6 py-24 dark:bg-card">
               <div className="z-10 flex flex-col items-center gap-4">
                 <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-primary/20 bg-card hover:border-primary/40">
@@ -84,11 +84,11 @@ export default function DashboardCheckout() {
               </div>
               <div className="z-10 flex items-center justify-center">
                 <Link
-                  to={DASHBOARD_PATH}
+                  to={PROFILES_PATH}
                   prefetch="intent"
                   className={`${buttonVariants({ variant: 'ghost', size: 'sm' })} gap-2`}>
                   <span className="text-sm font-medium text-primary/60 group-hover:text-primary">
-                    Return to Dashboard
+                    Return to Profiles
                   </span>
                   <ExternalLink className="h-4 w-4 stroke-[1.5px] text-primary/60 group-hover:text-primary" />
                 </Link>

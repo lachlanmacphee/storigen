@@ -17,7 +17,7 @@ import { getSession, commitSession } from '#app/modules/auth/auth-session.server
 import { validateCSRF } from '#app/utils/csrf.server'
 import { checkHoneypot } from '#app/utils/honeypot.server'
 import { siteConfig } from '#app/utils/constants/brand'
-import { ROUTE_PATH as DASHBOARD_PATH } from '#app/routes/dashboard+/_layout'
+import { ROUTE_PATH as PROFILES_PATH } from '#app/routes/profiles+/_layout'
 import { Input } from '#app/components/ui/input'
 import { Button } from '#app/components/ui/button'
 
@@ -33,7 +33,7 @@ export const meta: MetaFunction = () => {
 
 export async function loader({ request }: LoaderFunctionArgs) {
   await authenticator.isAuthenticated(request, {
-    successRedirect: DASHBOARD_PATH,
+    successRedirect: PROFILES_PATH,
   })
 
   const cookie = await getSession(request.headers.get('Cookie'))

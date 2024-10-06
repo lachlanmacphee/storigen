@@ -4,7 +4,7 @@ import { HelpCircle, ExternalLink } from 'lucide-react'
 import { siteConfig } from '#app/utils/constants/brand'
 import { GenericErrorBoundary } from '#app/components/misc/error-boundary'
 import { buttonVariants } from '#app/components/ui/button'
-import { ROUTE_PATH as DASHBOARD_PATH } from '#app/routes/dashboard+/_layout'
+import { ROUTE_PATH as PROFILES_PATH } from '#app/routes/profiles+/_layout'
 
 export const meta: MetaFunction = () => {
   return [{ title: `${siteConfig.siteTitle} - 404 Not Found!` }]
@@ -36,7 +36,7 @@ export function ErrorBoundary() {
               </p>
             </div>
             <Link
-              to={DASHBOARD_PATH}
+              to={PROFILES_PATH}
               prefetch="intent"
               className={`${buttonVariants({ variant: 'ghost', size: 'sm' })} gap-2`}>
               <span className="text-sm font-medium text-primary/60 group-hover:text-primary">

@@ -111,8 +111,8 @@ export async function createSubscriptionCheckout({
     line_items: [{ price: price.id, quantity: 1 }],
     mode: 'subscription',
     payment_method_types: ['card'],
-    success_url: `${HOST_URL}/dashboard/checkout`,
-    cancel_url: `${HOST_URL}/dashboard/settings/billing`,
+    success_url: `${HOST_URL}/profiles/checkout`,
+    cancel_url: `${HOST_URL}/profiles/settings/billing`,
   })
   if (!checkout) throw new Error(ERRORS.STRIPE_SOMETHING_WENT_WRONG)
   return checkout.url
@@ -127,7 +127,7 @@ export async function createCustomerPortal({ userId }: { userId: string }) {
 
   const customerPortal = await stripe.billingPortal.sessions.create({
     customer: user.customerId,
-    return_url: `${HOST_URL}/dashboard/settings/billing`,
+    return_url: `${HOST_URL}/profiles/settings/billing`,
   })
   if (!customerPortal) throw new Error(ERRORS.STRIPE_SOMETHING_WENT_WRONG)
   return customerPortal.url

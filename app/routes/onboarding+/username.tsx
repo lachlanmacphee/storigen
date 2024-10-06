@@ -26,7 +26,7 @@ import { ERRORS } from '#app/utils/constants/errors'
 import { ROUTE_PATH as LOGIN_PATH } from '#app/routes/auth+/login'
 import { Input } from '#app/components/ui/input'
 import { Button } from '#app/components/ui/button'
-import { ROUTE_PATH as DASHBOARD_PATH } from '#app/routes/dashboard+/_layout'
+import { ROUTE_PATH as PROFILES_PATH } from '#app/routes/profiles+/_layout'
 
 export const ROUTE_PATH = '/onboarding/username' as const
 
@@ -83,7 +83,7 @@ export async function action({ request }: ActionFunctionArgs) {
   })
   if (!subscription) await createFreeSubscription({ userId: sessionUser.id, request })
 
-  return redirect(DASHBOARD_PATH)
+  return redirect(PROFILES_PATH)
 }
 
 export default function OnboardingUsername() {

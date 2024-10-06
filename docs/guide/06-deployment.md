@@ -9,7 +9,7 @@ If you are new to Fly.io, please check the [Getting Started](https://fly.io/docs
 
 To get started, we'll require to get our Stripe Production Webhook API Key. This key will be required to set up the `STRIPE_WEBHOOK_ENDPOINT` variable in our `.env` file.
 
-1. Visit the [Stripe Webhook](https://dashboard.stripe.com/test/webhooks) section.
+1. Visit the [Stripe Webhook](https://profiles.stripe.com/test/webhooks) section.
 2. Create a new Webhook Endpoint.
 3. Set the name of your future deployed app as the Webhook URL input. _(Check Notes)_
 4. Select the latest Stripe API version from `API version` selector.

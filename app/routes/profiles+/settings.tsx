@@ -4,10 +4,10 @@ import { json } from '@remix-run/node'
 import { z } from 'zod'
 import { requireUser } from '#app/modules/auth/auth.server'
 import { cn } from '#app/utils/misc'
-import { ROUTE_PATH as BILLING_PATH } from '#app/routes/dashboard+/settings.billing'
+import { ROUTE_PATH as BILLING_PATH } from '#app/routes/profiles+/settings.billing.tsx'
 import { buttonVariants } from '#app/components/ui/button'
 
-export const ROUTE_PATH = '/dashboard/settings' as const
+export const ROUTE_PATH = '/profiles/settings' as const
 
 export const UsernameSchema = z.object({
   username: z
@@ -28,7 +28,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
   return json({ user })
 }
 
-export default function DashboardSettings() {
+export default function ProfilesSettings() {
   const location = useLocation()
   const isSettingsPath = location.pathname === ROUTE_PATH
   const isBillingPath = location.pathname === BILLING_PATH

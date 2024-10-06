@@ -23,6 +23,7 @@ import {
   ImageSchema,
 } from '#app/routes/resources+/upload-image'
 import { ROUTE_PATH as RESET_IMAGE_PATH } from '#app/routes/resources+/reset-image'
+import { siteConfig } from '#app/utils/constants/brand.ts'
 
 export const UsernameSchema = z.object({
   username: z
@@ -88,7 +89,7 @@ export async function action({ request }: ActionFunctionArgs) {
   throw new Error(`Invalid intent: ${intent}`)
 }
 
-export default function DashboardSettings() {
+export default function ProfilesSettings() {
   const { user } = useLoaderData<typeof loader>()
   const lastResult = useActionData<typeof action>()
 
@@ -247,8 +248,8 @@ export default function DashboardSettings() {
         <div className="flex flex-col gap-2 p-6">
           <h2 className="text-xl font-medium text-primary">Delete Account</h2>
           <p className="text-sm font-normal text-primary/60">
-            Permanently delete your Remix SaaS account, all of your projects, links and
-            their respective stats.
+            Permanently delete your {siteConfig.siteTitle} account, all of your projects,
+            links and their respective stats.
           </p>
         </div>
         <div className="flex min-h-14 w-full items-center justify-between rounded-lg rounded-t-none border-t border-border bg-red-500/10 px-6 dark:bg-red-500/10">

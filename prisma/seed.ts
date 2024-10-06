@@ -152,7 +152,7 @@ async function seed() {
 
   console.info(`👒 Stripe Customer Portal has been successfully configured.`)
   console.info(
-    '🎉 Visit: https://dashboard.stripe.com/test/products to see your products.',
+    '🎉 Visit: https://profiles.stripe.com/test/products to see your products.',
   )
 }
 

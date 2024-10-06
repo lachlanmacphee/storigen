@@ -1,26 +1,22 @@
 import { useLocation } from '@remix-run/react'
-import { ROUTE_PATH as DASHBOARD_PATH } from '#app/routes/dashboard+/_layout'
-import { ROUTE_PATH as BILLING_PATH } from '#app/routes/dashboard+/settings.billing'
-import { ROUTE_PATH as SETTINGS_PATH } from '#app/routes/dashboard+/settings'
-import { ROUTE_PATH as ADMIN_PATH } from '#app/routes/admin+/_layout'
+import { ROUTE_PATH as PROFILES_PATH } from '#app/routes/profiles+/_layout'
+import { ROUTE_PATH as BILLING_PATH } from '#app/routes/profiles+/settings.billing.tsx'
+import { ROUTE_PATH as SETTINGS_PATH } from '#app/routes/profiles+/settings.tsx'
 
 export function Header() {
   const location = useLocation()
-  const allowedLocations = [DASHBOARD_PATH, BILLING_PATH, SETTINGS_PATH, ADMIN_PATH]
+  const allowedLocations = [PROFILES_PATH, BILLING_PATH, SETTINGS_PATH]
 
   const headerTitle = () => {
-    if (location.pathname === DASHBOARD_PATH) return 'Dashboard'
+    if (location.pathname === PROFILES_PATH) return 'Profiles'
     if (location.pathname === BILLING_PATH) return 'Billing'
     if (location.pathname === SETTINGS_PATH) return 'Settings'
-    if (location.pathname === ADMIN_PATH) return 'Admin'
   }
   const headerDescription = () => {
-    if (location.pathname === DASHBOARD_PATH)
-      return 'Manage your Apps and view your usage.'
+    if (location.pathname === PROFILES_PATH) return 'Manage stories based on individuals.'
     if (location.pathname === SETTINGS_PATH) return 'Manage your account settings.'
     if (location.pathname === BILLING_PATH)
       return 'Manage billing and your subscription plan.'
-    if (location.pathname === ADMIN_PATH) return 'Your admin dashboard.'
   }
 
   if (!allowedLocations.includes(location.pathname as (typeof allowedLocations)[number]))

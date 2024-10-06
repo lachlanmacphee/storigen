@@ -21,7 +21,7 @@ import { useIsPending } from '#app/utils/misc'
 import { siteConfig } from '#app/utils/constants/brand'
 import { Input } from '#app/components/ui/input'
 import { Button } from '#app/components/ui/button'
-import { ROUTE_PATH as DASHBOARD_PATH } from '#app/routes/dashboard+/_layout'
+import { ROUTE_PATH as PROFILES_PATH } from '#app/routes/profiles+/_layout'
 import { ROUTE_PATH as AUTH_VERIFY_PATH } from '#app/routes/auth+/verify'
 
 export const ROUTE_PATH = '/auth/login' as const
@@ -36,7 +36,7 @@ export const meta: MetaFunction = () => {
 
 export async function loader({ request }: LoaderFunctionArgs) {
   await authenticator.isAuthenticated(request, {
-    successRedirect: DASHBOARD_PATH,
+    successRedirect: PROFILES_PATH,
   })
 
   const cookie = await getSession(request.headers.get('Cookie'))
@@ -86,7 +86,7 @@ export default function Login() {
     <div className="mx-auto flex h-full w-full max-w-96 flex-col items-center justify-center gap-6">
       <div className="mb-2 flex flex-col gap-2">
         <h3 className="text-center text-2xl font-medium text-primary">
-          Continue to Remix SaaS
+          Continue to {siteConfig.siteTitle}
         </h3>
         <p className="text-center text-base font-normal text-primary/60">
           Welcome back! Please log in to continue.

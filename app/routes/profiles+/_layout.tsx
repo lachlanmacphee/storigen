@@ -7,7 +7,7 @@ import { ROUTE_PATH as ONBOARDING_USERNAME_PATH } from '#app/routes/onboarding+/
 import { Navigation } from '#app/components/navigation'
 import { Header } from '#app/components/header'
 
-export const ROUTE_PATH = '/dashboard' as const
+export const ROUTE_PATH = '/profiles' as const
 
 export async function loader({ request }: LoaderFunctionArgs) {
   const user = await requireUser(request)
@@ -19,7 +19,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
   return json({ user, subscription } as const)
 }
 
-export default function Dashboard() {
+export default function Profiles() {
   const { user, subscription } = useLoaderData<typeof loader>()
 
   return (

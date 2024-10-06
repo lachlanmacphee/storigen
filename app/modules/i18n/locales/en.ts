@@ -1,5 +1,5 @@
 export default {
-  title: 'Create your App',
+  title: 'Create a profile',
   description:
-    'Build your app on top of Remix SaaS, explore the documentation and start your journey.',
+    'A separate profile per child helps to organise stories and maximise creativity.',
 }
