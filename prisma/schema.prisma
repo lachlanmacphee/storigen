@@ -63,7 +63,7 @@ model Story {
   id         String      @id @default(cuid())
   title      String
   theme      String
-  morale     String
+  moral     String
   location   String
   plot       String
   characters Character[]

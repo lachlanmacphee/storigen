@@ -15,7 +15,7 @@ CREATE TABLE "Story" (
     "id" TEXT NOT NULL PRIMARY KEY,
     "title" TEXT NOT NULL,
     "theme" TEXT NOT NULL,
-    "morale" TEXT NOT NULL,
+    "moral" TEXT NOT NULL,
     "location" TEXT NOT NULL,
     "plot" TEXT NOT NULL,
     "profileId" TEXT NOT NULL,

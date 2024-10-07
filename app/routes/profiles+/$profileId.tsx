@@ -1,7 +1,7 @@
 import { prisma } from '#app/utils/db.server.ts'
 import type { Profile, Story } from '@prisma/client'
-import { Form, useLoaderData } from '@remix-run/react'
-import { json, type LoaderFunctionArgs } from '@remix-run/router'
+import { Form, Link, redirect, useLoaderData } from '@remix-run/react'
+import { json, type LoaderFunctionArgs, type ActionFunctionArgs } from '@remix-run/router'
 import {
   Card,
   CardContent,
@@ -23,6 +23,34 @@ import { Badge } from '#app/components/ui/badge'
 import { Plus } from 'lucide-react'
 import { Button, buttonVariants } from '#app/components/ui/button.tsx'
 import { Textarea } from '#app/components/ui/textarea.tsx'
+// import { requireUser } from '#app/modules/auth/auth.server.ts'
+
+export async function action({ request, params }: ActionFunctionArgs) {
+  const profile = await prisma.profile.findUnique({ where: { id: params.profileId } })
+  if (!profile) return
+  // const user = await requireUser(request)
+
+  // validate profile belongs to user
+
+  const body = await request.formData()
+  const title = body.get('title') as string | null
+  const theme = body.get('theme') as string | null
+  const moral = body.get('moral') as string | null
+  const location = body.get('location') as string | null
+  const plot = body.get('plot') as string | null
+  if (!title || !theme || !moral || !location || !plot) return
+  const story = await prisma.story.create({
+    data: {
+      title,
+      theme,
+      moral,
+      location,
+      plot,
+      profileId: profile.id,
+    },
+  })
+  return redirect(`/profiles/${profile.id}/story/${story.id}`)
+}
 
 export async function loader({ params }: LoaderFunctionArgs) {
   const profile = await prisma.profile.findUnique({ where: { id: params.profileId } })
@@ -72,8 +100,8 @@ export default function ProfileID() {
                 <Input type="text" id="theme" name="theme" required />
               </div>
               <div className="space-y-1">
-                <Label htmlFor="morale">Morale</Label>
-                <Input type="text" id="morale" name="morale" required />
+                <Label htmlFor="moral">Moral</Label>
+                <Input type="text" id="moral" name="moral" required />
               </div>
               <div className="space-y-1">
                 <Label htmlFor="location">Location</Label>
@@ -102,7 +130,7 @@ export default function ProfileID() {
               </CardHeader>
               <CardContent>
                 <p>
-                  <strong>Morale:</strong> {story.morale}
+                  <strong>Moral:</strong> {story.moral}
                 </p>
                 <p>
                   <strong>Location:</strong> {story.location}
@@ -119,6 +147,7 @@ export default function ProfileID() {
                     </Badge>
                   ))}
                 </div>
+                <Link to={`stories/${story.id}`}>Go to story</Link>
               </CardContent>
             </Card>
           ))
