@@ -16,7 +16,7 @@ CREATE TABLE "Story" (
     "title" TEXT NOT NULL,
     "theme" TEXT NOT NULL,
     "moral" TEXT NOT NULL,
-    "location" TEXT NOT NULL,
+    "setting" TEXT NOT NULL,
     "plot" TEXT NOT NULL,
     "profileId" TEXT NOT NULL,
     CONSTRAINT "Story_profileId_fkey" FOREIGN KEY ("profileId") REFERENCES "Profile" ("id") ON DELETE CASCADE ON UPDATE CASCADE

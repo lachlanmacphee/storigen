@@ -12,7 +12,7 @@ import { Logo } from '#app/components/logo'
 import ShadowPNG from '#public/images/shadow.png'
 
 export const meta: MetaFunction = () => {
-  return [{ title: `${siteConfig.siteTitle} - Starter Kit` }]
+  return [{ title: siteConfig.siteTitle }]
 }
 
 export async function loader({ request }: LoaderFunctionArgs) {
@@ -57,7 +57,6 @@ export default function Index() {
           <p className="max-w-screen-md text-center text-lg !leading-normal text-muted-foreground md:text-xl">
             Generate illustrated stories in minutes with a modern{' '}
             <span className="font-medium text-primary">easy-to-use tool</span>.
-            <br className="hidden lg:inline-block" /> Even your kids can do it!
           </p>
           <div className="mt-2 flex w-full items-center justify-center gap-2">
             <Link
@@ -80,13 +79,13 @@ export default function Index() {
               target="_blank"
               rel="noreferrer"
               className="flex items-center text-primary hover:text-primary hover:underline">
-              Lachlan MacPhee
+              INSEAD Team #
             </a>
           </p>
           <p className="flex items-center whitespace-nowrap text-center text-sm font-medium text-primary/60">
             Source code available on&nbsp;{' '}
             <a
-              href="https://github.com/lachlanmacphee/storigen"
+              href="https://github.com/lachlanmacphee/creative-kidz"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center text-primary hover:text-primary hover:underline">

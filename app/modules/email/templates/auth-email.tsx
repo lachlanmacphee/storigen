@@ -27,7 +27,7 @@ export function AuthEmail({ code, magicLink }: AuthEmailOptions) {
   return (
     <Html>
       <Head />
-      <Preview>Your login code for storigen</Preview>
+      <Preview>Your login code for Creative Kidz</Preview>
       <Body
         style={{
           backgroundColor: '#ffffff',
@@ -50,7 +50,7 @@ export function AuthEmail({ code, magicLink }: AuthEmailOptions) {
               color: '#484848',
               padding: '12px 0 0',
             }}>
-            Your login code for storigen
+            Your login code for Creative Kidz
           </Heading>
           {magicLink && (
             <Section style={{ padding: '8px 0px' }}>
@@ -66,7 +66,7 @@ export function AuthEmail({ code, magicLink }: AuthEmailOptions) {
                   backgroundColor: '#5e6ad2',
                 }}
                 href={magicLink}>
-                Login to storigen.io
+                Login to Creative Kidz.io
               </Button>
             </Section>
           )}
@@ -87,7 +87,7 @@ export function AuthEmail({ code, magicLink }: AuthEmailOptions) {
           </code>
           <Hr style={{ margin: '20px 0', borderColor: '#cccccc' }} />
           <Text style={{ color: '#8898aa', fontSize: '12px' }}>
-            200 storigen.io - Singapore
+            200 creativekidz.com - Singapore
           </Text>
         </Container>
       </Body>
@@ -110,7 +110,7 @@ export async function sendAuthEmail({ email, code, magicLink }: AuthEmailOptions
 
   await sendEmail({
     to: email,
-    subject: 'Your login code for storigen',
+    subject: 'Your login code for Creative Kidz',
     html,
   })
 }

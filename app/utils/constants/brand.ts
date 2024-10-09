@@ -2,13 +2,13 @@
  * Brand Constants
  */
 export const siteConfig = {
-  siteTitle: 'storigen',
+  siteTitle: 'Creative Kidz',
   siteDescription:
     'Unleash your imagination with illustrated stories created by generative AI.',
-  siteUrl: 'https://storigen.io',
+  siteUrl: 'https://creativekidz.com',
   siteImage: '/images/og-image.png',
   favicon: '/favicon.ico',
-  twitterHandle: '@storigen',
-  email: 'hello@storigen.io',
+  twitterHandle: '@creativekidz',
+  email: 'hello@creativekidz.com',
   address: '',
 }

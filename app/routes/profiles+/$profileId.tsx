@@ -17,12 +17,13 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '#app/components/ui/dialog'
+
 import { Label } from '#app/components/ui/label.tsx'
 import { Input } from '#app/components/ui/input.tsx'
 import { Badge } from '#app/components/ui/badge'
 import { Plus } from 'lucide-react'
 import { Button, buttonVariants } from '#app/components/ui/button.tsx'
-import { Textarea } from '#app/components/ui/textarea.tsx'
+
 // import { requireUser } from '#app/modules/auth/auth.server.ts'
 
 export async function action({ request, params }: ActionFunctionArgs) {
@@ -34,22 +35,20 @@ export async function action({ request, params }: ActionFunctionArgs) {
 
   const body = await request.formData()
   const title = body.get('title') as string | null
-  const theme = body.get('theme') as string | null
-  const moral = body.get('moral') as string | null
-  const location = body.get('location') as string | null
-  const plot = body.get('plot') as string | null
-  if (!title || !theme || !moral || !location || !plot) return
+  if (!title) return
+
   const story = await prisma.story.create({
     data: {
       title,
-      theme,
-      moral,
-      location,
-      plot,
+      theme: '',
+      moral: '',
+      setting: '',
+      plot: '',
       profileId: profile.id,
     },
   })
-  return redirect(`/profiles/${profile.id}/story/${story.id}`)
+
+  return redirect(`/profiles/${profile.id}/stories/${story.id}/theme`)
 }
 
 export async function loader({ params }: LoaderFunctionArgs) {
@@ -73,7 +72,7 @@ export default function ProfileID() {
     <div className="space-y-8 bg-secondary p-6 text-white dark:bg-black">
       <div className="flex justify-between">
         {/* Profile Information */}
-        <h1 className="text-2xl font-semibold">{profile.name}</h1>
+        <h1 className="text-2xl font-semibold">{profile.name}'s Stories</h1>
 
         {/* Create New Story */}
         <Dialog>
@@ -94,22 +93,6 @@ export default function ProfileID() {
               <div className="space-y-1">
                 <Label htmlFor="title">Title</Label>
                 <Input type="text" id="title" name="title" required />
-              </div>
-              <div className="space-y-1">
-                <Label htmlFor="theme">Theme</Label>
-                <Input type="text" id="theme" name="theme" required />
-              </div>
-              <div className="space-y-1">
-                <Label htmlFor="moral">Moral</Label>
-                <Input type="text" id="moral" name="moral" required />
-              </div>
-              <div className="space-y-1">
-                <Label htmlFor="location">Location</Label>
-                <Input type="text" id="location" name="location" required />
-              </div>
-              <div className="space-y-1">
-                <Label htmlFor="plot">Plot</Label>
-                <Textarea id="plot" name="plot" required />
               </div>
               <Button type="submit" className="mr-2">
                 Submit
@@ -133,7 +116,7 @@ export default function ProfileID() {
                   <strong>Moral:</strong> {story.moral}
                 </p>
                 <p>
-                  <strong>Location:</strong> {story.location}
+                  <strong>Setting:</strong> {story.setting}
                 </p>
                 <p>
                   <strong>Plot:</strong> {story.plot}
@@ -157,6 +140,9 @@ export default function ProfileID() {
           </p>
         )}
       </div>
+
+      <h1 className="text-2xl font-semibold">Community Stories</h1>
+      <p>No community stories have been published yet. Check back soon!</p>
     </div>
   )
 }
