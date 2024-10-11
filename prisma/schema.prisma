@@ -60,13 +60,15 @@ model Profile {
 }
 
 model Story {
-  id         String      @id @default(cuid())
-  title      String
-  theme      String
-  moral      String
-  setting    String
-  plot       String
-  characters Character[]
+  id          String      @id @default(cuid())
+  title       String
+  theme       String
+  moral       String
+  setting     String
+  plot        String
+  characters  Character[]
+  chapters    Chapter[]
+  isGenerated Boolean
 
   profile   Profile @relation(fields: [profileId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   profileId String
@@ -77,7 +79,15 @@ model Character {
   name        String
   personality String
   appearance  String
-  image       String
+
+  story   Story  @relation(fields: [storyId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  storyId String
+}
+
+model Chapter {
+  id    String @id @default(cuid())
+  text  String
+  image String
 
   story   Story  @relation(fields: [storyId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   storyId String

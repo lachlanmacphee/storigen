@@ -18,33 +18,23 @@ import {
   DialogTrigger,
 } from '#app/components/ui/dialog'
 
-import { Label } from '#app/components/ui/label.tsx'
-import { Input } from '#app/components/ui/input.tsx'
 import { Badge } from '#app/components/ui/badge'
 import { Plus } from 'lucide-react'
 import { Button, buttonVariants } from '#app/components/ui/button.tsx'
 
-// import { requireUser } from '#app/modules/auth/auth.server.ts'
-
 export async function action({ request, params }: ActionFunctionArgs) {
   const profile = await prisma.profile.findUnique({ where: { id: params.profileId } })
   if (!profile) return
-  // const user = await requireUser(request)
-
-  // validate profile belongs to user
-
-  const body = await request.formData()
-  const title = body.get('title') as string | null
-  if (!title) return
 
   const story = await prisma.story.create({
     data: {
-      title,
+      title: '',
       theme: '',
       moral: '',
       setting: '',
       plot: '',
       profileId: profile.id,
+      isGenerated: false,
     },
   })
 
@@ -90,12 +80,8 @@ export default function ProfileID() {
               </DialogDescription>
             </DialogHeader>
             <Form method="post" className="space-y-3">
-              <div className="space-y-1">
-                <Label htmlFor="title">Title</Label>
-                <Input type="text" id="title" name="title" required />
-              </div>
               <Button type="submit" className="mr-2">
-                Submit
+                Go
               </Button>
             </Form>
           </DialogContent>
