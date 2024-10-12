@@ -11,8 +11,9 @@ const env = { ...process.env }
   }
 
   // Run the seed script before starting the web server.
-  // Comment me out after the first deployment ❗.
-  await exec('npx prisma db seed')
+  if (env.DO_SEED) {
+    await exec('npx prisma db seed')
+  }
 
   // Launch application.
   await exec(process.argv.slice(2).join(' '))

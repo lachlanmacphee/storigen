@@ -10,14 +10,13 @@
     "#*": "./*"
   },
   "scripts": {
-    "build": "prisma generate && remix vite:build",
+    "build": "remix vite:build",
     "dev": "node ./server.mjs",
     "format": "prettier --write .",
     "lint": "eslint .",
     "start": "cross-env NODE_ENV=production node ./server.mjs",
     "typecheck": "tsc",
-    "validate": "npm run lint && npm run typecheck",
-    "postinstall": "prisma generate"
+    "validate": "npm run lint && npm run typecheck"
   },
   "dependencies": {
     "@conform-to/react": "1.1.4",
