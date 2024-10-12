@@ -76,7 +76,7 @@ export default function Index() {
               target="_blank"
               rel="noreferrer"
               className="flex items-center text-primary hover:text-primary hover:underline">
-              INSEAD Team #
+              INSEAD
             </a>
           </p>
           <p className="flex items-center whitespace-nowrap text-center text-sm font-medium text-primary/60">
