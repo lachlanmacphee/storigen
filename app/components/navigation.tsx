@@ -1,7 +1,7 @@
 import type { User } from '@prisma/client'
 import { Link, useLocation, useSubmit, useNavigate } from '@remix-run/react'
-import { ChevronUp, ChevronDown, Slash, Check, Settings, LogOut } from 'lucide-react'
-import { PLANS } from '#app/modules/stripe/plans'
+import { Settings, LogOut } from 'lucide-react'
+// import { PLANS } from '#app/modules/stripe/plans'
 import { useRequestInfo } from '#app/utils/hooks/use-request-info'
 import { getUserImgSrc, cn } from '#app/utils/misc'
 import { ROUTE_PATH as LOGOUT_PATH } from '#app/routes/auth+/logout'
@@ -13,7 +13,6 @@ import { LanguageSwitcher } from '#app/components/misc/language-switcher'
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuLabel,
   DropdownMenuItem,
   DropdownMenuTrigger,
   DropdownMenuSeparator,
@@ -61,75 +60,42 @@ export function Navigation({ user, planId }: NavigationProps) {
             className="flex h-10 items-center gap-1">
             <Logo />
           </Link>
-          <Slash className="h-6 w-6 -rotate-12 stroke-[1.5px] text-primary/10" />
-          <DropdownMenu modal={false}>
-            <DropdownMenuTrigger asChild>
-              <Button
-                variant="ghost"
-                className="gap-2 px-2 data-[state=open]:bg-primary/5">
-                <div className="flex items-center gap-2">
-                  {user?.image?.id ? (
-                    <img
-                      className="h-8 w-8 rounded-full object-cover"
-                      alt={user.username ?? user.email}
-                      src={getUserImgSrc(user.image?.id)}
-                    />
-                  ) : (
-                    <span className="h-8 w-8 rounded-full bg-gradient-to-br from-lime-400 from-10% via-cyan-300 to-blue-500" />
-                  )}
+        </div>
 
-                  <p className="text-sm font-medium text-primary/80">
-                    {user?.username || ''}
-                  </p>
-                  <span className="flex h-5 items-center rounded-full bg-primary/10 px-2 text-xs font-medium text-primary/80">
-                    {(planId && planId.charAt(0).toUpperCase() + planId.slice(1)) ||
-                      'Free'}
-                  </span>
-                </div>
-                <span className="flex flex-col items-center justify-center">
-                  <ChevronUp className="relative top-[3px] h-[14px] w-[14px] stroke-[1.5px] text-primary/60" />
-                  <ChevronDown className="relative bottom-[3px] h-[14px] w-[14px] stroke-[1.5px] text-primary/60" />
-                </span>
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent sideOffset={8} className="min-w-56 bg-card p-2">
-              <DropdownMenuLabel className="flex items-center text-xs font-normal text-primary/60">
-                Personal Account
-              </DropdownMenuLabel>
-              <DropdownMenuItem className="h-10 w-full cursor-pointer justify-between rounded-md bg-secondary px-2">
-                <div className="flex items-center gap-2">
-                  {user?.image?.id ? (
-                    <img
-                      className="h-6 w-6 rounded-full object-cover"
-                      alt={user.username ?? user.email}
-                      src={getUserImgSrc(user.image?.id)}
-                    />
-                  ) : (
-                    <span className="h-6 w-6 rounded-full bg-gradient-to-br from-lime-400 from-10% via-cyan-300 to-blue-500" />
-                  )}
-
-                  <p className="text-sm font-medium text-primary/80">
-                    {user?.username || ''}
-                  </p>
-                </div>
-                <Check className="h-[18px] w-[18px] stroke-[1.5px] text-primary/60" />
-              </DropdownMenuItem>
-
-              {planId && planId === PLANS.FREE && (
-                <>
-                  <DropdownMenuSeparator className="mx-0 my-2" />
-                  <DropdownMenuItem className="p-0 focus:bg-transparent">
-                    <Button
-                      size="sm"
-                      className="w-full"
-                      onClick={() => navigate(PROFILE_SETTINGS_BILLING_PATH)}>
-                      Upgrade to PRO
-                    </Button>
-                  </DropdownMenuItem>
-                </>
-              )}
-            </DropdownMenuContent>
-          </DropdownMenu>
+        <div className="flex items-center gap-3">
+          <div
+            className={`flex h-12 items-center border-b-2 ${isProfilesPath ? 'border-primary' : 'border-transparent'}`}>
+            <Link
+              to={PROFILES_PATH}
+              prefetch="intent"
+              className={cn(
+                `${buttonVariants({ variant: 'ghost', size: 'sm' })} text-primary/80`,
+              )}>
+              Profiles
+            </Link>
+          </div>
+          <div
+            className={`flex h-12 items-center border-b-2 ${isSettingsPath ? 'border-primary' : 'border-transparent'}`}>
+            <Link
+              to={PROFILE_SETTINGS_PATH}
+              prefetch="intent"
+              className={cn(
+                `${buttonVariants({ variant: 'ghost', size: 'sm' })} text-primary/80`,
+              )}>
+              Settings
+            </Link>
+          </div>
+          <div
+            className={`flex h-12 items-center border-b-2 ${isBillingPath ? 'border-primary' : 'border-transparent'}`}>
+            <Link
+              to={PROFILE_SETTINGS_BILLING_PATH}
+              prefetch="intent"
+              className={cn(
+                `${buttonVariants({ variant: 'ghost', size: 'sm' })} text-primary/80`,
+              )}>
+              Billing
+            </Link>
+          </div>
         </div>
 
         <div className="flex h-10 items-center gap-3">
@@ -198,42 +164,6 @@ export function Navigation({ user, planId }: NavigationProps) {
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
-        </div>
-      </div>
-
-      <div className="mx-auto flex w-full max-w-screen-xl items-center gap-3">
-        <div
-          className={`flex h-12 items-center border-b-2 ${isProfilesPath ? 'border-primary' : 'border-transparent'}`}>
-          <Link
-            to={PROFILES_PATH}
-            prefetch="intent"
-            className={cn(
-              `${buttonVariants({ variant: 'ghost', size: 'sm' })} text-primary/80`,
-            )}>
-            Profiles
-          </Link>
-        </div>
-        <div
-          className={`flex h-12 items-center border-b-2 ${isSettingsPath ? 'border-primary' : 'border-transparent'}`}>
-          <Link
-            to={PROFILE_SETTINGS_PATH}
-            prefetch="intent"
-            className={cn(
-              `${buttonVariants({ variant: 'ghost', size: 'sm' })} text-primary/80`,
-            )}>
-            Settings
-          </Link>
-        </div>
-        <div
-          className={`flex h-12 items-center border-b-2 ${isBillingPath ? 'border-primary' : 'border-transparent'}`}>
-          <Link
-            to={PROFILE_SETTINGS_BILLING_PATH}
-            prefetch="intent"
-            className={cn(
-              `${buttonVariants({ variant: 'ghost', size: 'sm' })} text-primary/80`,
-            )}>
-            Billing
-          </Link>
         </div>
       </div>
     </nav>

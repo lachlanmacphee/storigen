@@ -32,13 +32,15 @@ export async function action({ request, params }: ActionFunctionArgs) {
   return redirect(`/profiles/${profile.id}/stories/${story.id}`)
 }
 
-export default function StoryID() {
+export default function StoryPlot() {
   return (
-    <div className="space-y-1 p-8">
-      <Form method="post" className="space-y-1">
-        <Label htmlFor="plot">Plot</Label>
-        <Textarea id="plot" name="plot" required />
-        <Button type="submit" className="mr-2">
+    <div className="flex justify-center p-8">
+      <Form method="post" className="max-w-3xl flex-grow space-y-4">
+        <div className="space-y-1">
+          <Label htmlFor="plot">Plot</Label>
+          <Textarea id="plot" name="plot" required />
+        </div>
+        <Button type="submit" variant="default_green" className="mr-2">
           Submit
         </Button>
       </Form>

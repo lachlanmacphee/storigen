@@ -41,7 +41,7 @@ export const UsernameSchema = z.object({
 })
 
 export const meta: MetaFunction = () => {
-  return [{ title: 'Remix SaaS - Username' }]
+  return [{ title: 'Username' }]
 }
 
 export async function loader({ request }: LoaderFunctionArgs) {

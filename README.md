@@ -17,7 +17,8 @@ stripe listen --forward-to localhost:3000/api/webhook
 Run the following commands:
 ```
 npm install
-npx prisma migrate dev
+npx prisma db push
+npx prisma db seed
 npm run dev
 ```
 

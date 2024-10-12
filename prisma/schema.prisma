@@ -86,6 +86,7 @@ model Character {
 
 model Chapter {
   id    String @id @default(cuid())
+  title String
   text  String
   image String
 

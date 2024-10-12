@@ -4,7 +4,6 @@ import { Plus } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { requireUser } from '#app/modules/auth/auth.server'
 import { prisma } from '#app/utils/db.server'
-import { siteConfig } from '#app/utils/constants/brand'
 import { Button, buttonVariants } from '#app/components/ui/button.tsx'
 import { Form, Link, useLoaderData } from '@remix-run/react'
 import type { ActionFunctionArgs } from '@remix-run/router'
@@ -21,7 +20,7 @@ import { Label } from '#app/components/ui/label.tsx'
 import { Input } from '#app/components/ui/input.tsx'
 
 export const meta: MetaFunction = () => {
-  return [{ title: `${siteConfig.siteTitle} - Profiles` }]
+  return [{ title: `Profiles` }]
 }
 
 export async function action({ request }: ActionFunctionArgs) {
@@ -57,7 +56,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
   return json({ user, subscription, profiles } as const)
 }
 
-export default function ProfilesIndex() {
+export default function Profiles() {
   const { t } = useTranslation()
   const { profiles } = useLoaderData<typeof loader>()
 
@@ -68,9 +67,11 @@ export default function ProfilesIndex() {
           {/* Controls Row */}
           <Dialog>
             <DialogTrigger
-              className={buttonVariants({ variant: 'default', size: 'lg' }) + ' gap-2'}>
+              className={
+                buttonVariants({ variant: 'default_green', size: 'lg' }) + ' gap-2'
+              }>
               <span className="font-semibold">Create Profile</span>
-              <Plus className="stroke-" />
+              <Plus />
             </DialogTrigger>
             <DialogContent>
               <DialogHeader>
@@ -93,7 +94,9 @@ export default function ProfilesIndex() {
                   <Label htmlFor="gender">Gender</Label>
                   <Input type="text" id="gender" name="gender" />
                 </div>
-                <Button type="submit">Create Profile</Button>
+                <Button type="submit" variant="default_green">
+                  Create Profile
+                </Button>
               </Form>
             </DialogContent>
           </Dialog>
@@ -122,8 +125,15 @@ export default function ProfilesIndex() {
                     <Link
                       key={profile.id}
                       to={profile.id}
-                      className="z-10 flex h-20 w-40 items-center justify-center gap-4 rounded-2xl border border-primary/20 bg-card p-2 hover:border-primary/40">
-                      <p className="text-base font-medium text-primary">{profile.name}</p>
+                      className="z-10 flex h-52 w-52 flex-col items-center justify-center gap-4 rounded-2xl border border-primary/20 bg-card p-2 hover:border-primary/40">
+                      <img
+                        src={`https://api.dicebear.com/9.x/fun-emoji/svg?seed=${profile.name}&eyes=plain,closed,closed2,wink&mouth=cute,lilSmile,smileTeeth,wideSmile`}
+                        alt="avatar"
+                        className="h-20 w-20 rounded-md"
+                      />
+                      <p className="text-2xl font-semibold text-primary">
+                        {profile.name}
+                      </p>
                     </Link>
                   ))}
                 </div>

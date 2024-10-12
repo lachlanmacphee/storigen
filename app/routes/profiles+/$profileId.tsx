@@ -53,7 +53,7 @@ export async function loader({ params }: LoaderFunctionArgs) {
   return json({ profile, stories } as const)
 }
 
-export default function ProfileID() {
+export default function Profile() {
   const loaderData = useLoaderData<typeof loader>()
   const profile = loaderData.profile as Profile
   const stories = loaderData.stories as Story[]
@@ -62,14 +62,19 @@ export default function ProfileID() {
     <div className="space-y-8 bg-secondary p-6 text-white dark:bg-black">
       <div className="flex justify-between">
         {/* Profile Information */}
-        <h1 className="text-2xl font-semibold">{profile.name}'s Stories</h1>
+        <h1 className="text-2xl font-semibold">
+          {profile.name}
+          {profile.name.slice(-1) == 's' ? "'" : "'s"} Stories
+        </h1>
 
         {/* Create New Story */}
         <Dialog>
           <DialogTrigger
-            className={buttonVariants({ variant: 'default', size: 'lg' }) + ' gap-2'}>
+            className={
+              buttonVariants({ variant: 'default_green', size: 'lg' }) + ' gap-2'
+            }>
             <span className="font-semibold">Create Story</span>
-            <Plus className="stroke-" />
+            <Plus />
           </DialogTrigger>
           <DialogContent>
             <DialogHeader>
@@ -80,7 +85,7 @@ export default function ProfileID() {
               </DialogDescription>
             </DialogHeader>
             <Form method="post" className="space-y-3">
-              <Button type="submit" className="mr-2">
+              <Button type="submit" variant="default_green" className="mr-2">
                 Go
               </Button>
             </Form>
@@ -92,33 +97,32 @@ export default function ProfileID() {
       <div className="grid w-full grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
         {stories.length > 0 ? (
           stories.map((story: Story) => (
-            <Card key={story.id} className="bg-primary dark:bg-secondary">
-              <CardHeader>
-                <CardTitle>{story.title}</CardTitle>
-                <CardDescription>{story.theme}</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p>
-                  <strong>Moral:</strong> {story.moral}
-                </p>
-                <p>
-                  <strong>Setting:</strong> {story.setting}
-                </p>
-                <p>
-                  <strong>Plot:</strong> {story.plot}
-                </p>
-                {/* Display a list of characters as badges if available */}
-                <div className="mt-4 space-x-2">
-                  {/* @ts-ignore */}
-                  {story.characters.map((character) => (
-                    <Badge key={character.id} className="bg-accent">
-                      {character.name}
-                    </Badge>
-                  ))}
-                </div>
-                <Link to={`stories/${story.id}`}>Go to story</Link>
-              </CardContent>
-            </Card>
+            <Link key={story.id} to={`stories/${story.id}`}>
+              <Card>
+                <CardHeader>
+                  <CardTitle>{story.title}</CardTitle>
+                  <CardDescription>{story.theme}</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <p>
+                    <strong>Plot:</strong> {story.plot}
+                  </p>
+                  <p>
+                    <strong>Moral:</strong> {story.moral}
+                  </p>
+                  <p>
+                    <strong>Setting:</strong> {story.setting}
+                  </p>
+                  {/* Display a list of characters as badges if available */}
+                  <div className="mt-4 space-x-2">
+                    {/* @ts-ignore */}
+                    {story.characters.map((character) => (
+                      <Badge key={character.id}>{character.name}</Badge>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </Link>
           ))
         ) : (
           <p className="col-span-full text-center text-gray-500">

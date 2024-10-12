@@ -32,13 +32,15 @@ export async function action({ request, params }: ActionFunctionArgs) {
   return redirect(`/profiles/${profile.id}/stories/${story.id}/setting`)
 }
 
-export default function StoryID() {
+export default function StoryMoral() {
   return (
-    <div className="space-y-1 p-8">
-      <Form method="post" className="space-y-1">
-        <Label htmlFor="moral">Moral</Label>
-        <Input type="text" id="moral" name="moral" required />
-        <Button type="submit" className="mr-2">
+    <div className="flex justify-center p-8">
+      <Form method="post" className="max-w-3xl flex-grow space-y-4">
+        <div className="space-y-1">
+          <Label htmlFor="moral">Moral</Label>
+          <Input type="text" id="moral" name="moral" required />
+        </div>
+        <Button type="submit" variant="default_green" className="mr-2">
           Submit
         </Button>
       </Form>
