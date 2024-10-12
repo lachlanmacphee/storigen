@@ -3,13 +3,11 @@ import { Link, useLoaderData } from '@remix-run/react'
 import { json } from '@remix-run/node'
 import { authenticator } from '#app/modules/auth/auth.server'
 import { cn } from '#app/utils/misc'
-import { useTheme } from '#app/utils/hooks/use-theme.js'
 import { siteConfig } from '#app/utils/constants/brand'
 import { ROUTE_PATH as LOGIN_PATH } from '#app/routes/auth+/login'
 import { Button, buttonVariants } from '#app/components/ui/button'
 import { ThemeSwitcherHome } from '#app/components/misc/theme-switcher'
 import { Logo } from '#app/components/logo'
-import ShadowPNG from '#public/images/shadow.png'
 
 export const meta: MetaFunction = () => {
   return [{ title: siteConfig.siteTitle }]
@@ -22,7 +20,6 @@ export async function loader({ request }: LoaderFunctionArgs) {
 
 export default function Index() {
   const { user } = useLoaderData<typeof loader>()
-  const theme = useTheme()
 
   return (
     <div className="relative flex h-full w-full flex-col bg-card">
@@ -96,11 +93,6 @@ export default function Index() {
       </footer>
 
       {/* Background */}
-      <img
-        src={ShadowPNG}
-        alt="Hero"
-        className={`fixed left-0 top-0 z-0 h-full w-full opacity-60 ${theme === 'dark' ? 'invert' : ''}`}
-      />
       <div className="base-grid fixed h-screen w-screen opacity-40" />
       <div className="fixed bottom-0 h-screen w-screen bg-gradient-to-t from-[hsl(var(--card))] to-transparent" />
     </div>
