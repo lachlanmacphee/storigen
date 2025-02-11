@@ -82,7 +82,7 @@ export default function Index() {
           <p className="flex items-center whitespace-nowrap text-center text-sm font-medium text-primary/60">
             Source code available on&nbsp;{' '}
             <a
-              href="https://github.com/lachlanmacphee/creative-kidz"
+              href="https://github.com/lachlanmacphee/storigen"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center text-primary hover:text-primary hover:underline">

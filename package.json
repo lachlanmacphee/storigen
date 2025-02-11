@@ -1,8 +1,8 @@
 {
-  "name": "creative-kidz",
+  "name": "storigen",
   "private": true,
   "description": "Generate stories for family and friends using generative AI.",
-  "repository": "lachlanmacphee/creative-kidz",
+  "repository": "lachlanmacphee/storigen",
   "author": "Lachlan MacPhee <contact@lachlanmacphee.com> (https://github.com/lachlanmacphee)",
   "sideEffects": false,
   "type": "module",
